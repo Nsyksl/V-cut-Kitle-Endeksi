@@ -1,0 +1,44 @@
+def vki_hesapla(kilo, boy):
+ #kilo / boyun karesi
+  vki = kilo/(boy**2)
+  return round(vki, 1)
+#sınıf fonksiyonları
+def deger_aralığı(vki):
+  if vki < 18.5:
+    return "Zayıf"
+  elif vki >= 18.5 and vki <= 24.9:
+    return "Normal Kilolu"
+  elif vki >= 25 and vki <= 29.9:
+    return "Fazla Kilolu"
+  elif vki >= 30 and vki <= 39.9:
+    return "Obez"
+  elif vki >= 40:
+    return "İleri Derecede Obez"
+import time
+def cıktı(isim, yas, boy, kilo, vki, deger):
+  kayıt= time.ctime(time.time())
+  t1 = f"Kullanıcı Adı Soyadı:  {isim}\n"
+  t2 = f"Kullanıcı Yaş, Kilo, Boy {yas}, {kilo}, {boy}\n"
+  t3 = f"Kullanıcı Vücut Kitle Endeksi {vki}\n"
+  t4 = f"Kullanıcı VKİ Değeri {deger}\n"
+  t5 = f"Kayıt Tarihi {kayıt}\n"
+  output = t1 + t2+ t3+ t4+ t5
+  return output
+def main():
+  kullanıcı_sayısı = int(input("Kaç kullanıcı yer alacak?"))
+  for i in range(kullanıcı_sayısı):
+    print(f"Kullanıcı kaydı: {i+1}")
+    isim = str(input("İsim Soyisim:"))
+    yas =   int(input("Yaş:"))
+    kilo =  float(input("Kilo:"))
+    boy =   float(input("Boy(m):"))
+    vki = vki_hesapla(kilo , boy)
+    deger = deger_aralığı(vki)
+    output = cıktı(isim, yas, boy, kilo, vki, deger)
+    with open ("Vücut Kitle Endeksi.text", "a") as f:
+      f.write(output)
+      f.write("*"*25)
+      f.write("\n")
+      print("Kullanıcı kaydedildi. ")
+print("Veriler, 'Vücut Kitle Endeksi.txt'ye kaydedildi")
+main()
